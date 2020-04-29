@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+.mainview {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chatview {
+  width: 100vw;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 2px solid grey;
+}
+
+.sidebar__list {
+  height: 600px;
+  overflow: auto;
+
+}
+
+.sidebar__item {
+  display: flex;
+
+  font-size: 14px;
+}
+
+.sidebar__container {
+  height: 150px;
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,463 @@
+{
+  "general": [
+    {
+      "username": "Daniel",
+      "msg": "testar123",
+      "id": "1ab0b3e0-8039-4fd8-890c-920b02598d47",
+      "room": "general",
+      "connection": "LT3PFEkaPjmJ4oR_AAAC"
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej hej från klient 1",
+      "id": "92705868-a9de-473c-baca-6dd9c9745428",
+      "room": "general",
+      "connection": "RtL9Kt67gEb425pHAAAD"
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej hej från klient 2",
+      "id": "cacd82bf-2813-41dc-a887-41a48d27e7a9",
+      "room": "general",
+      "connection": "dQ1XEznD_rNMLM07AAAE"
+    },
+    {
+      "username": "Daniel",
+      "msg": "testare123",
+      "room": "general",
+      "id": "8938d5a6-7776-419b-b480-a2e2949db9ec",
+      "connection": "pfLtC16ZdJbLk6BQAAAC",
+      "timestamp": 1587995841689
+    },
+    {
+      "username": "Daniel",
+      "msg": "nytt meddelande",
+      "room": "general",
+      "id": "9cce3058-6bd4-4ee8-929c-c163d18ee1a3",
+      "connection": "50Oq8QYdd87X46huAAAG",
+      "timestamp": 1587995920228
+    },
+    {
+      "username": "Daniel",
+      "msg": "123123123",
+      "room": "general",
+      "id": "972cb301-035e-46be-a34c-78b6a2c85bd4",
+      "connection": "wXyNuuEAPGh_Qi6iAAAK",
+      "timestamp": 1587995978502
+    },
+    {
+      "username": "Daniel",
+      "msg": "testa 123",
+      "room": "general",
+      "id": "6d60ca52-4326-4143-aeee-579a295021c2",
+      "connection": "dXi3O5QjV-wBJK2qAAAE",
+      "timestamp": 1588012897039
+    },
+    {
+      "username": "Daniel",
+      "msg": "new message",
+      "room": "general",
+      "id": "74780933-e355-49bd-9d56-6716a56899a0",
+      "connection": "vLBRD5JKSrVdORbrAAAC",
+      "timestamp": 1588013124946
+    },
+    {
+      "username": "Daniel",
+      "msg": "halloj",
+      "room": "general",
+      "id": "97c2f369-7d68-4c10-a82e-db4bc865bd13",
+      "connection": "lSsQZXne1RI1pvomAAAE",
+      "timestamp": 1588013382272
+    },
+    {
+      "username": "Daniel",
+      "msg": "nu med id på eget msg",
+      "room": "general",
+      "id": "779c7d7e-a43e-43d5-8624-49e58351c21f",
+      "connection": "e1FddlXbzybvWQG8AAAH",
+      "timestamp": 1588013472484
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej mig",
+      "room": "general",
+      "id": "5a3db46c-3385-4d6e-996a-c7d25bf0f40b",
+      "connection": "uDS5M1jJVQx5CbGaAAAA",
+      "timestamp": 1588014518460
+    },
+    {
+      "username": "Daniel",
+      "msg": "123123",
+      "room": "general",
+      "id": "9ad0756c-e22c-4310-866e-6dadbd38fa6c",
+      "connection": "w_YzcxXtvv0YxoRmAAAC",
+      "timestamp": 1588063339233
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej",
+      "room": "general",
+      "id": "16c0c4e1-71ed-4d6b-9b3c-0f23df99f877",
+      "connection": "f_emSdgEr5SN_1nTAAAH",
+      "timestamp": 1588075538594
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej",
+      "room": "general",
+      "id": "5d0366a5-11ff-4234-b78a-965137e9c850",
+      "connection": "jQ8cAnrunTbR_PVeAAAN",
+      "timestamp": 1588075713110
+    },
+    {
+      "username": "Daniel",
+      "msg": "testar",
+      "room": "general",
+      "id": "1420707f-a509-4b19-8398-5816e0cd4e81",
+      "connection": "jQ8cAnrunTbR_PVeAAAN",
+      "timestamp": 1588075731975
+    },
+    {
+      "username": "Daniel",
+      "msg": "funkar?!",
+      "room": "general",
+      "id": "1b8ab305-e86d-4185-a63e-57e51db842c6",
+      "connection": "2CsZcdEKP6fSH1UrAAAP",
+      "timestamp": 1588075759595
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej user",
+      "room": "general",
+      "id": "1b7e0168-2ec8-43a1-bf45-247659f834e2",
+      "connection": "Mi_d70oBrQse2shJAAAD",
+      "timestamp": 1588075931852
+    },
+    {
+      "username": "Daniel",
+      "msg": "test123",
+      "room": "general",
+      "id": "b9d08001-9154-44c2-8f33-da9a8ab0747d",
+      "connection": "QgHuYyPUF-qBAo0XAAAD",
+      "timestamp": 1588076225175
+    },
+    {
+      "username": "Daniel",
+      "msg": "async problem är de bästa problem!",
+      "room": "general",
+      "id": "9af6a039-fb06-465c-9c24-fd77225f350a",
+      "connection": "dC7NzYmMU4ySWVdPAAAC",
+      "timestamp": 1588076310059
+    },
+    {
+      "username": "Daniel",
+      "msg": "await",
+      "room": "general",
+      "id": "afe7e543-5dec-4bf3-ad57-9d09141b5d46",
+      "connection": "Q1x_TCYtceoQZQQ_AAAD",
+      "timestamp": 1588076324236
+    },
+    {
+      "username": "Daniel",
+      "msg": "testtest",
+      "room": "general",
+      "id": "1cfdb2bf-4234-4d9d-977d-e1d547092c36",
+      "connection": "hDQ1O7pde7VFUJuOAAAJ",
+      "timestamp": 1588077262898
+    },
+    {
+      "username": "Daniel",
+      "msg": "testing from client 2",
+      "room": "general",
+      "id": "38b227a9-f107-4789-96be-5b7f1ca44755",
+      "connection": "09rk5VGwL58Q59W1AAAI",
+      "timestamp": 1588077278448
+    },
+    {
+      "username": "Daniel",
+      "msg": "general funkar",
+      "room": "general",
+      "id": "b0d44073-5761-4ad9-8e98-56436fb134a7",
+      "connection": "PpUzzXumg5HgXsdWAAAR",
+      "timestamp": 1588077475323
+    },
+    {
+      "username": "Daniel",
+      "msg": "testar123",
+      "room": "general",
+      "id": "39e2543b-2d6d-4656-930e-1c494f639a0b",
+      "connection": "y0bASez0MqeZ99c-AAAD",
+      "timestamp": 1588077981640
+    },
+    {
+      "username": "Daniel",
+      "msg": "Hej till general",
+      "room": "general",
+      "id": "0a56f11a-7408-4e00-a5ad-1498a2a38ddf",
+      "connection": "pnhuhIOw9lVw3AmHAAAS",
+      "timestamp": 1588080086400
+    }
+  ],
+  "school": [
+    {
+      "username": "Daniel",
+      "msg": "ERRHMAGEERHD",
+      "id": "ab322c61-0172-44df-a604-9e1aa5e1e02f",
+      "room": "school",
+      "connection": "as7Bo4TnT2nV7YIfAABB"
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej från klient 2",
+      "id": "481988c6-4b41-475c-b503-876f9f785a35",
+      "room": "school",
+      "connection": "PXQK2XAs9xQLKrK5AABH"
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej hej hej 2",
+      "id": "639d36fa-fb5e-4e3b-92a6-1ce43df51f39",
+      "room": "school",
+      "connection": "jgD9FeEV4ZuegnYqAABE"
+    },
+    {
+      "username": "Daniel",
+      "msg": "Too cool for school",
+      "room": "school",
+      "id": "8803384a-4e82-4978-b595-1727527af80f",
+      "connection": "dXi3O5QjV-wBJK2qAAAE",
+      "timestamp": 1588012932538
+    },
+    {
+      "username": "Daniel",
+      "msg": "cool story",
+      "room": "school",
+      "id": "e0024fb4-73b0-4f1e-aa8a-9a6fe046cbed",
+      "connection": "qiXjo4in8f4sRSu2AAAA",
+      "timestamp": 1588013072048
+    },
+    {
+      "username": "Daniel",
+      "msg": "Och nu=",
+      "room": "school",
+      "id": "d7f2d386-bc33-46db-b2e3-d076fed3abfc",
+      "connection": "lSsQZXne1RI1pvomAAAE",
+      "timestamp": 1588013394757
+    },
+    {
+      "username": "Daniel",
+      "msg": "tjo baloo",
+      "room": "school",
+      "id": "ea5f2e3c-38f3-4b61-b3a9-a6fbadb9c3e3",
+      "connection": "oyprFfXX8NoHsg9iAAAL",
+      "timestamp": 1588015362881
+    },
+    {
+      "username": "Daniel",
+      "msg": "123123",
+      "room": "school",
+      "id": "7f832295-5918-40fb-a0c2-8582010aa00c",
+      "connection": "kZp-qo6kNQNX37iHAAAD",
+      "timestamp": 1588063347320
+    },
+    {
+      "username": "Daniel",
+      "msg": "bugg",
+      "room": "school",
+      "id": "25967198-e599-4726-9e0c-9a3fce5ff04e",
+      "connection": "LMlBF12meWNHQ7xiAAAC",
+      "timestamp": 1588075970367
+    },
+    {
+      "username": "Daniel",
+      "msg": "bugg",
+      "room": "school",
+      "id": "f0935b87-ce2b-453b-9264-9b540784eca3",
+      "connection": "Mi_d70oBrQse2shJAAAD",
+      "timestamp": 1588075985545
+    },
+    {
+      "username": "Daniel",
+      "msg": "school",
+      "room": "school",
+      "id": "6601d8d0-0a85-4977-bede-48ffbc130dfb",
+      "connection": "PpUzzXumg5HgXsdWAAAR",
+      "timestamp": 1588077497109
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej till school",
+      "room": "school",
+      "id": "c7591131-6437-4c92-8392-16b14984a3b7",
+      "connection": "FGXQ1ghRs7WfCDRmAAAT",
+      "timestamp": 1588080112069
+    }
+  ],
+  "Daniels rum": [
+    {
+      "username": "Daniel",
+      "msg": "Vi testar ett meddelande",
+      "room": "Daniels rum",
+      "id": "ded91fd6-7ce0-4c95-add4-aeaea1d8c160",
+      "connection": "gBTySQEkcD2g4LqJAAAC",
+      "timestamp": 1588060821558
+    },
+    {
+      "username": "Daniel",
+      "msg": "123123",
+      "room": "Daniels rum",
+      "id": "fcf33096-8148-43cf-a985-1e703713b7a3",
+      "connection": "kZp-qo6kNQNX37iHAAAD",
+      "timestamp": 1588063351347
+    },
+    {
+      "username": "Daniel",
+      "msg": "testing from another room",
+      "room": "Daniels rum",
+      "id": "14f00ab9-1b66-49d0-adeb-9c122510e31f",
+      "connection": "hDQ1O7pde7VFUJuOAAAJ",
+      "timestamp": 1588077308344
+    },
+    {
+      "username": "Daniel",
+      "msg": "welcome!",
+      "room": "Daniels rum",
+      "id": "9d1e3fe0-4b0a-4b6c-a286-b1b729c6cd69",
+      "connection": "hDQ1O7pde7VFUJuOAAAJ",
+      "timestamp": 1588077327432
+    },
+    {
+      "username": "Daniel",
+      "msg": "willkommen",
+      "room": "Daniels rum",
+      "id": "4fc81f8a-3441-4491-84de-943447609551",
+      "connection": "09rk5VGwL58Q59W1AAAI",
+      "timestamp": 1588077347687
+    },
+    {
+      "username": "Daniel",
+      "msg": "Nu har vi hittat felen?",
+      "room": "Daniels rum",
+      "id": "5a663745-1929-4096-9d83-f31d9dd8a1a6",
+      "connection": "eQXBReVepd2EtC5GAAAP",
+      "timestamp": 1588078652079
+    },
+    {
+      "username": "Daniel",
+      "msg": "hej Daniel",
+      "room": "Daniels rum",
+      "id": "3ca5236e-f3ef-4103-abb1-a04d77217bb3",
+      "connection": "vK9l2RLJbd67dSKPAAAC",
+      "timestamp": 1588078717617
+    }
+  ],
+  "New cool room": [
+    {
+      "username": "Daniel",
+      "msg": "vad händer nu?",
+      "room": "New cool room",
+      "id": "3ac3f50e-bf89-4dcd-a1b6-373cb7eb6023",
+      "connection": "y_E7CfEq5FzYY11nAAAB",
+      "timestamp": 1588061002394
+    },
+    {
+      "username": "Daniel",
+      "msg": "123123",
+      "room": "New cool room",
+      "id": "2d8438ba-5367-4ec5-ba5b-3406846faec8",
+      "connection": "kZp-qo6kNQNX37iHAAAD",
+      "timestamp": 1588063360106
+    }
+  ],
+  "devs": [
+    {
+      "username": "Daniel",
+      "msg": "First",
+      "room": "devs",
+      "id": "d78bb492-d51b-41a6-9ea2-54b57c8c6b41",
+      "connection": "rrFCc3MKyJlyFqkbAAAA",
+      "timestamp": 1588063544747
+    },
+    {
+      "username": "Daniel",
+      "msg": "Typed languages are far superior!",
+      "room": "devs",
+      "id": "986a5387-5c9d-4fdc-b845-fbae66aaf571",
+      "connection": "2szCvI4MxjyDEMIdAAAC",
+      "timestamp": 1588074970728
+    },
+    {
+      "username": "Daniel",
+      "msg": "\"1\" == 1, this is fine.",
+      "room": "devs",
+      "id": "4b42d25a-74b0-4639-ac18-e633de44ea50",
+      "connection": "2szCvI4MxjyDEMIdAAAC",
+      "timestamp": 1588074989150
+    },
+    {
+      "username": "Daniel",
+      "msg": "new message",
+      "room": "devs",
+      "id": "7124e6cd-aecf-4304-ae5c-21efa83e80a6",
+      "connection": "eOMXIUCvHrhoXCP_AAAF",
+      "timestamp": 1588076016615
+    },
+    {
+      "username": "Daniel",
+      "msg": "working?",
+      "room": "devs",
+      "id": "69e0a70e-6693-4402-90d2-3b6f707ea606",
+      "connection": "RefxCx7UeHphPwJ3AAAa",
+      "timestamp": 1588077711361
+    },
+    {
+      "username": "Daniel",
+      "msg": "no..",
+      "room": "devs",
+      "id": "12a01e35-5b01-4db9-8d39-9e64f3682232",
+      "connection": "ppzilSXLde05D0esAAAb",
+      "timestamp": 1588077719639
+    },
+    {
+      "username": "Daniel",
+      "msg": "testar123",
+      "room": "devs",
+      "id": "56e148c4-fee5-4dc7-88f0-a65a6f446556",
+      "connection": "y0bASez0MqeZ99c-AAAD",
+      "timestamp": 1588078004706
+    }
+  ],
+  "Test": [
+    {
+      "username": "Daniel",
+      "msg": "hej ",
+      "room": "Test",
+      "id": "8ae6f117-44cb-4242-84ad-063a8dd7cebf",
+      "connection": "vK9l2RLJbd67dSKPAAAC",
+      "timestamp": 1588078975119
+    }
+  ],
+  "nytt rum": [
+    {
+      "username": "Daniel",
+      "msg": "hej hej",
+      "room": "nytt rum",
+      "id": "c824fe67-1113-4943-9a79-15f9d52f2e7e",
+      "connection": "YgILxrR5ilwXDmijAAAE",
+      "timestamp": 1588077916596
+    }
+  ],
+  "testa": [],
+  "gaming": [
+    {
+      "username": "Daniel",
+      "msg": "hej undefined",
+      "room": "gaming",
+      "id": "37ca96b8-1caf-45ff-bd05-50e7ea27ce6d",
+      "connection": "DLCJMoXgRmQx90RXAAAC",
+      "timestamp": 1588080317772
+    }
+  ],
+  "Coolroom1337": [],
+  "Coolroom1338": []
+}
