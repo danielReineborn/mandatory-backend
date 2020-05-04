@@ -196,6 +196,59 @@
       "id": "0a56f11a-7408-4e00-a5ad-1498a2a38ddf",
       "connection": "pnhuhIOw9lVw3AmHAAAS",
       "timestamp": 1588080086400
+    },
+    {
+      "msg": "halloj",
+      "room": "general",
+      "id": "6bbfea48-25f3-41e5-885f-99216c7a2f3b",
+      "connection": "l4iOnVhlEzO3RDF4AAAX",
+      "timestamp": 1588246305303
+    },
+    {
+      "msg": "Daniel",
+      "room": "general",
+      "id": "766b96d0-b59b-4453-902c-fef18e41d9bc",
+      "connection": "NrewtjaeM0FpEtVSAAAZ",
+      "timestamp": 1588246329718
+    },
+    {
+      "username": "Daniel",
+      "msg": "Nytt test",
+      "room": "general",
+      "id": "a4fa5163-4111-4d79-9a65-1857e80cb4ac",
+      "connection": "j8F335JqT69rUZUyAAAi",
+      "timestamp": 1588247645330
+    },
+    {
+      "username": "Daniel",
+      "msg": "Cool story!",
+      "room": "general",
+      "id": "f8d2242b-d132-4923-931e-86a32b4aa278",
+      "connection": "j8F335JqT69rUZUyAAAi",
+      "timestamp": 1588247661142
+    },
+    {
+      "msg": "hej",
+      "room": "general",
+      "id": "814a8cd5-1b1b-405c-beb2-137342594241",
+      "connection": "ffxFEFd80gQ0JLREAAAm",
+      "timestamp": 1588248056184
+    },
+    {
+      "username": "CoolBoy17",
+      "msg": "testing",
+      "room": "general",
+      "id": "c9d1010e-5174-4674-bd43-3a7e618698d2",
+      "connection": "hlS8oZY_ggljgkumAAAq",
+      "timestamp": 1588250092256
+    },
+    {
+      "username": "CoolBoy17",
+      "msg": "again",
+      "room": "general",
+      "id": "71441968-0c19-4e50-bad9-918bf6582dd7",
+      "connection": "seHXBuK5ml5Q3vMPAAAr",
+      "timestamp": 1588250100312
     }
   ],
   "school": [
@@ -436,28 +489,5 @@
       "connection": "vK9l2RLJbd67dSKPAAAC",
       "timestamp": 1588078975119
     }
-  ],
-  "nytt rum": [
-    {
-      "username": "Daniel",
-      "msg": "hej hej",
-      "room": "nytt rum",
-      "id": "c824fe67-1113-4943-9a79-15f9d52f2e7e",
-      "connection": "YgILxrR5ilwXDmijAAAE",
-      "timestamp": 1588077916596
-    }
-  ],
-  "testa": [],
-  "gaming": [
-    {
-      "username": "Daniel",
-      "msg": "hej undefined",
-      "room": "gaming",
-      "id": "37ca96b8-1caf-45ff-bd05-50e7ea27ce6d",
-      "connection": "DLCJMoXgRmQx90RXAAAC",
-      "timestamp": 1588080317772
-    }
-  ],
-  "Coolroom1337": [],
-  "Coolroom1338": []
+  ]
 }

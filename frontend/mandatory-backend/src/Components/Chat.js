@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
+import { Redirect } from "react-router-dom";
 
 import { capLetter } from "../Utils";
 import Sidebar from "./Sidebar";
+import { token$ } from '../Observables/store';
 
 export default function Chat({ socket }) {
   const [msg, updateMsg] = useState([]);
   const [value, updateValue] = useState("");
   const [chatRoom, updateChatRoom] = useState("general");
+  const [token, updateToken] = useState(token$.value);
 
 
   useEffect(() => {
-    //socket.emit("adduser", "Daniel"); //Varje gång detta görs, joinas "general" på servern. INTE BRA.
+    const subscription = token$.subscribe(updateToken);
+    socket.username = localStorage.getItem("user");
+    return () => {
+      subscription.unsubscribe();
+    }
+  })
+
+  useEffect(() => {
     axios.get("/messages")
       .then((res) => {
         let data = res.data[chatRoom];
@@ -54,7 +64,7 @@ export default function Chat({ socket }) {
     e.preventDefault();
 
     let newMessage = {
-      username: "Daniel",
+      username: socket.username,
       msg: value,
       room: chatRoom,
       id: uuidv4(),
@@ -71,6 +81,10 @@ export default function Chat({ socket }) {
     updateValue("");
   }
 
+  if (!token) {
+    console.log("this happens")
+    return <Redirect to="/login" />
+  }
   return (
     <section className="chatview">
       <div>

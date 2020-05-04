@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ListItem from "./ListItem";
+import Header from "./Header";
 
 export default function Sidebar({ socket, changeRoom }) {
   const [rooms, updateRooms] = useState([]);
@@ -62,6 +63,7 @@ export default function Sidebar({ socket, changeRoom }) {
 
   return (
     <aside className="sidebar">
+      <Header socket={socket} />
       <div className="sidebar__list">
         {rooms.map((x, i) => {
           return <ListItem

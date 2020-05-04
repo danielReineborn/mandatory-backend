@@ -69,6 +69,15 @@
 
 }
 
-.login__title {
+.form__title {
   color: #53D86A;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+}
+
+.header__cont {
+  width: 50%;
 }

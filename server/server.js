@@ -36,17 +36,25 @@ io.on('connection', (socket) => {
 
   socket.on("adduser", (username) => {
     socket.username = username;
-    users[username] = username;
 
-    socket.room = "general"; //kommer att skickas till servern vilket rum man är i.
+    socket.room = rooms[0]; //kommer att skickas till servern vilket rum man är i.
     socket.join(socket.room);
 
+    let msg = fn.setId(username)
+
+    socket.emit("message", msg)
+
+    users[username] = {
+      user: username,
+      id: msg.id,
+    };
+    console.log(users);
     /*  let serverMsg = fn.join(socket.username);
      socket.broadcast.to(socket.room).emit("message", serverMsg) */
 
   })
 
-  console.log('a user connected: ' + socket.rooms[id]);
+  console.log('a user connected: ' + socket.username);
 
   socket.on("new_message", msg => {
     console.log(msg.room + ": " + typeof msg.room);

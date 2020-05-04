@@ -1,13 +1,13 @@
 import { BehaviorSubject } from "rxjs";
 
-export const userName$ = new BehaviorSubject(localStorage.getItem("userName"));
+export const token$ = new BehaviorSubject(localStorage.getItem("token") || "");
 
-export function updateName(newName) {
-  if (newName) { //Truthy === token is set. Otherwise token is null === falsy.
-    localStorage.setItem("userName", newToken);
+export function updateToken(newToken) {
+  if (newToken) { //Truthy === token is set. Otherwise token is null === falsy.
+    localStorage.setItem("token", newToken);
 
   } else {
     localStorage.removeItem("token");
   }
-  token$.next(newName);
+  token$.next(newToken);
 }

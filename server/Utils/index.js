@@ -9,6 +9,13 @@ function save(data, file) {
   })
 }
 
+function setId(username) {
+  return {
+    username: username,
+    id: uuidv4(),
+  }
+}
+
 function joinRoom(username) {
   return {
     username: "SERVER",
@@ -38,3 +45,4 @@ module.exports.save = save;
 module.exports.join = joinRoom;
 module.exports.leave = leaveRoom;
 module.exports.valRoom = validateRoom;
+module.exports.setId = setId;
