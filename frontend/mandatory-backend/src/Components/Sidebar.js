@@ -10,13 +10,22 @@ export default function Sidebar({ socket, changeRoom }) {
   useEffect(() => {
     axios.get("/rooms")
       .then((res) => {
+        console.log(res);
         updateRooms(res.data);
       })
   }, [])
 
   useEffect(() => {
-    socket.on("roomUpdate", rooms => {
-      updateRooms(rooms);
+    socket.on("roomUpdate", response => {
+      if (response) {
+        axios.get("/rooms")
+          .then(response => {
+            let update = response.data;
+            console.log(update);
+            updateRooms(update);
+
+          })
+      }
     })
     return () => {
       socket.off("roomsUpdate");
@@ -25,25 +34,32 @@ export default function Sidebar({ socket, changeRoom }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    if (value.length > 0) {
-      socket.emit("room_add", value, (bool) => {
-        updateValue("");
-
-        if (bool) {
-          axios.get("/rooms")
-            .then((res) => {
-              updateRooms(res.data);
-
-            })
-            .catch((e) => {
-              console.error(e);
-            })
-
-        }
-      })
-
-
+    if (value.length <= 0) return;
+    let room = {
+      name: value,
     }
+    socket.emit("room_add", room, (bool) => {
+      updateValue("");
+
+      if (bool) {
+        axios.get("/rooms")
+          .then((res) => {
+            updateRooms(res.data);
+
+          })
+          .catch((e) => {
+            console.error(e);
+          })
+
+      }
+    })
+    /* axios.post(`/rooms`, room)
+      .then((response) => {
+        console.log(response);
+      }) */
+
+
+
     updateValue("");
   }
 
@@ -55,7 +71,7 @@ export default function Sidebar({ socket, changeRoom }) {
   function deleteRoom(room) {
     socket.emit("room_delete", room, (bool) => {
       if (bool) {
-        let newRooms = rooms.filter(x => x !== room);
+        let newRooms = rooms.filter(x => x._id !== room);
         updateRooms(newRooms);
       }
     })
@@ -70,7 +86,7 @@ export default function Sidebar({ socket, changeRoom }) {
             room={x}
             changeRoom={changeRoom}
             deleteRoom={deleteRoom}
-            key={i}
+            key={x._id}
           />
         })}
       </div>

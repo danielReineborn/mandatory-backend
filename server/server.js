@@ -4,13 +4,14 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const fs = require("fs");
 const fn = require("./Utils");
-const uuidv4 = require("uuid").v4
 const port = 8080;
-const error = require("./Utils/eventmessages");
-const event = require("./Utils/eventmessages");
+const {
+  getClient,
+  getDB,
+  createObjectId
+} = require("./db");
 
 //clientsent msgs.
-// msg = {username: "string", msg: "string", id: "socket.id", connection: socket.id} - ev byta ut id till uuid.
 let messages = JSON.parse(fs.readFileSync("db.json")) || [];
 
 //Chatinfo
@@ -21,26 +22,45 @@ let rooms = JSON.parse(fs.readFileSync("rooms.json")) || [];
 app.use(express.json());
 
 //GET
-app.get('/messages', (req, res) => {
-  res.json(messages);
+app.get('/messages/:room', (req, res) => {
+  let room = req.params.room;
+  const db = getDB();
+  db.collection(room)
+    .find({})
+    .toArray()
+    .then(resp => {
+      res.json(resp);
+    })
+    .catch(e => {
+      console.error(e);
+      res.status(500).end();
+    })
 });
 
-//GET /rooms
 app.get("/rooms", (req, res) => {
-  res.json(rooms);
+  const db = getDB();
+  db.collection("rooms")
+    .find({})
+    .toArray()
+    .then(resp => {
+      res.json(resp);
+    })
+    .catch(e => {
+      console.error(e);
+      res.status(500).end();
+    })
 })
 
 //Check what rooms a user in, emit all corresponding msgs. 
 io.on('connection', (socket) => {
-  let id = socket.id;
-
   socket.on("adduser", (username) => {
     socket.username = username;
+    console.log(socket.username);
 
-    socket.room = rooms[0]; //kommer att skickas till servern vilket rum man är i.
+    socket.room = "general";
     socket.join(socket.room);
 
-    let msg = fn.setId(username)
+    let msg = fn.setId(username);
 
     socket.emit("message", msg)
 
@@ -49,24 +69,29 @@ io.on('connection', (socket) => {
       id: msg.id,
     };
     console.log(users);
-    /*  let serverMsg = fn.join(socket.username);
-     socket.broadcast.to(socket.room).emit("message", serverMsg) */
 
   })
 
-  console.log('a user connected: ' + socket.username);
-
-  socket.on("new_message", msg => {
-    console.log(msg.room + ": " + typeof msg.room);
-    msg = {
+  socket.on("new_message", (msg, cb) => {
+    const db = getDB();
+    newMsg = {
       ...msg,
-      id: uuidv4(),
       connection: socket.id,
       timestamp: Date.now(),
     }
-    socket.broadcast.to(msg.room).emit("message", msg); // socket.broadcast sends to all but self. (io.emit === sends all) 
-    messages[msg.room].push(msg);
-    fn.save(messages, "db.json");
+
+
+    db.collection(newMsg.room)
+      .insertOne(newMsg)
+      .then(res => {
+        cb(res.insertedId);
+
+        socket.broadcast.to(newMsg.room).emit("message", newMsg); // socket.broadcast sends to all but self. (io.emit === sends all)
+      })
+      .catch(e => {
+        console.error(e);
+
+      })
   })
 
   socket.on("room_switch", (newRoom, cb) => {
@@ -84,44 +109,81 @@ io.on('connection', (socket) => {
   })
 
   socket.on("room_add", (roomName, cb) => {
-    //Se till att rum namn är unikt.
-    let val = fn.valRoom(rooms, roomName)
-    if (val) {
-      //emit error?
-      socket.off("room_add");
-    }
-    //socket.leave(old) > socket.join(new);
-    rooms.push(roomName);
-    fn.save(rooms, "rooms.json");
-    messages[roomName] = [];
-    fn.save(messages, "db.json");
-    socket.leave(socket.room);
-    socket.join(roomName);
+    const db = getDB();
+    db.collection("rooms")
+      .find({})
+      .toArray()
+      .then(resp => {
+        console.log(resp);
+        let val = fn.valRoom(resp, roomName.name)
+        if (val) {
+          socket.off("room_add");
+          return;
+        } else {
+          db.collection("rooms")
+            .insertOne(roomName)
+            .then(resp => {
+              db.createCollection(roomName.name, (err, res) => {
+                if (err) throw err;
+                console.log("Collection created");
+                socket.broadcast.emit("roomUpdate", resp.result);
+              })
+              cb(true);
+            })
+            .catch(e => {
+              console.error(e);
+            })
+        }
 
-    socket.room = roomName;
-    //Om inte -> error.
-    //om unikt -> room.push(roomName)
-    socket.broadcast.emit("roomUpdate", rooms);
-    cb(true);
-  })
-
-  socket.on("room_delete", (roomName, cb) => {
-    let val = fn.valRoom(rooms, roomName);
-    console.log(val);
-    if (val) {
-      rooms = rooms.filter(x => x !== roomName);
-      delete messages[roomName];
-
-      fn.save(rooms, "rooms.json");
-      fn.save(messages, "db.json");
-      socket.broadcast.emit("roomUpdate", rooms);
-
-      cb(true);
-      return;
-    }
-    //socket error?
+      })
+      .catch(e => {
+        console.error(e);
+      })
 
   })
+
+  socket.on("room_delete", (roomId, cb) => {
+    const db = getDB();
+
+    db.collection("rooms")
+      .findOne({
+        _id: createObjectId(roomId)
+      })
+      .then(result => {
+        let collection = result.name;
+        console.log(collection);
+
+        db.collection("rooms").deleteOne({
+            _id: createObjectId(roomId)
+          })
+          .then(res => {
+            console.log(res.result)
+          })
+          .catch(e => {
+            console.error(e);
+          });
+
+        db.collection(collection).drop((err, res) => {
+          if (err) throw err;
+
+          socket.broadcast.emit("roomUpdate", res);
+          console.log(res)
+          cb(res);
+        })
+      })
+      .catch(e => {
+        console.error(e);
+
+      });
+    //rooms = rooms.filter(x => x !== roomName);
+
+    //fn.save(rooms, "rooms.json");
+    //fn.save(messages, "db.json");
+
+  })
+  //socket error?
+
+
 
   //Fixa socket.on("error"...)...
 

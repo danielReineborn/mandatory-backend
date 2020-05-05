@@ -1,4 +1,13 @@
 const uuidv4 = require("uuid").v4
+const {
+  getClient,
+  getDB,
+  createObjectId
+} = require("../db");
+
+
+
+
 
 function save(data, file) {
   const fs = require("fs");
@@ -20,7 +29,7 @@ function joinRoom(username) {
   return {
     username: "SERVER",
     msg: `${username} has joined the room.`,
-    id: uuidv4(),
+    _id: uuidv4(),
   }
 }
 
@@ -28,13 +37,13 @@ function leaveRoom(username) {
   return {
     username: "SERVER",
     msg: `${username} has left the room.`,
-    id: uuidv4(),
+    _id: uuidv4(),
   }
 }
 
 function validateRoom(roomsArr, newRoom) {
   for (let room of roomsArr) {
-    if (room.toLowerCase() === newRoom.toLowerCase()) {
+    if (room.name.toLowerCase() === newRoom.toLowerCase()) {
       return true;
     }
   }

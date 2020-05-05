@@ -1,3 +1,10 @@
+/* 
+//Chat-BG: #36393f
+//Sidemenu: #2f3136
+//Frame: #202225
+//Input: #40444b
+*/
+
 * {
   box-sizing: border-box;
 }
@@ -9,13 +16,23 @@
 
 .chatview {
   width: 100vw;
-
+  height: 100vh;
+  background-color: #36393f;
   display: flex;
   justify-content: space-between;
 }
 
+.chatview__chat {
+  height: 80%;
+  width: 60%;
+  background-color: #36393f;
+  margin: auto;
+  overflow: auto;
+}
+
 .sidebar {
   height: 100vh;
+  background-color: #2f3136;
   position: fixed;
   top: 0px;
   right: 0px;
@@ -25,6 +42,7 @@
   justify-content: space-between;
   align-items: center;
   border-left: 2px solid grey;
+
 }
 
 .sidebar__list {
@@ -80,4 +98,10 @@
 
 .header__cont {
   width: 50%;
+}
+
+label,
+p,
+h1 {
+  color: #ffffff;
 }

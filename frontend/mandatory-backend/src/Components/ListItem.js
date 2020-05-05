@@ -6,16 +6,17 @@ export default function ListItem({ room, changeRoom, deleteRoom }) {
   function contClick(e) {
     e.stopPropagation();
     console.log("from listItem", room)
-    changeRoom(room);
+    changeRoom(room.name);
   }
 
   function btnClick(e) {
     e.stopPropagation();
-    deleteRoom(room);
+    deleteRoom(room._id);
+    console.log(room._id);
   }
   return (
     <div onClick={contClick} className="sidebar__item">
-      <p>{room}</p>
+      <p>{room.name}</p>
       <button onClick={btnClick}>X</button>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from "react-router-dom";
@@ -20,21 +20,24 @@ export default function Chat({ socket }) {
     return () => {
       subscription.unsubscribe();
     }
-  })
+  }, [])
 
   useEffect(() => {
-    axios.get("/messages")
+    axios.get(`/messages/${chatRoom}`)
       .then((res) => {
-        let data = res.data[chatRoom];
+        let data = res.data;
         updateMsg(data);
-        console.log("updateMsg");
+        console.log(data);
         return res;
+      })
+      .catch(e => {
+        console.error(e);
       })
 
   }, [chatRoom])
 
   useEffect(() => {
-    socket.on("message", (data) => {
+    socket.on("message", data => {
       console.log(data);
       //copy msg and use copy not real state.
       let msgCopy = [...msg];
@@ -46,6 +49,8 @@ export default function Chat({ socket }) {
       socket.off("message");
     }
   }, [msg, chatRoom])
+
+  const myRef = useRef()
 
   function onChange(e) {
     let value = e.target.value;
@@ -67,17 +72,19 @@ export default function Chat({ socket }) {
       username: socket.username,
       msg: value,
       room: chatRoom,
-      id: uuidv4(),
     };
+    socket.emit("new_message", newMessage, (id) => {
+      newMessage._id = id;
+      console.log(newMessage);
+      let messages = [
+        ...msg,
+        newMessage,
+      ]
+      updateMsg(messages);
+    });
 
-    let messages = [
-      ...msg,
-      newMessage,
-    ]
-    updateMsg(messages);
 
 
-    socket.emit("new_message", newMessage);
     updateValue("");
   }
 
@@ -87,20 +94,20 @@ export default function Chat({ socket }) {
   }
   return (
     <section className="chatview">
-      <div>
+      <div className="chatview__chat">
         <h1>{chatRoom}</h1>
-        <form onSubmit={onSubmit} action="">
-          <input value={value} onChange={onChange} type="text" name="chat" id="chat" />
-          <button type="submit">Send</button>
-        </form>
         <div className="messages">
           {msg ? msg.map((x) => {
             return (
-              <div key={x.id} className="chat__listitem">
-                <p id={x.id}>{x.username}: {x.msg}</p>
+              <div key={x._id} className="chat__listitem">
+                <p id={x._id}>{x.username}: {x.msg}</p>
               </div>
             )
           }) : <p>Loading...</p>}
+          <form onSubmit={onSubmit} action="">
+            <input value={value} onChange={onChange} type="text" name="chat" id="chat" />
+            <button type="submit">Send</button>
+          </form>
         </div>
 
       </div>
