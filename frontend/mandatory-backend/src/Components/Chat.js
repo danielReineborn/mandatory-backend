@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from "react-router-dom";
-
+import moment from "moment";
+import localization from 'moment/locale/de'
 import { capLetter } from "../Utils";
 import Sidebar from "./Sidebar";
 import { token$ } from '../Observables/store';
@@ -72,6 +73,7 @@ export default function Chat({ socket }) {
       username: socket.username,
       msg: value,
       room: chatRoom,
+      timestamp: Date.now(),
     };
     socket.emit("new_message", newMessage, (id) => {
       newMessage._id = id;
@@ -94,26 +96,30 @@ export default function Chat({ socket }) {
   }
   return (
     <section className="chatview">
+      <div className="chat__title-cont">
+
+        <h1 className="chat__title">{capLetter(chatRoom)}</h1>
+      </div>
       <div className="chatview__chat">
-        <h1>{chatRoom}</h1>
-        <div className="messages">
+        <div className="chatview__messages">
           {msg ? msg.map((x) => {
             return (
               <div key={x._id} className="chat__listitem">
-                <p id={x._id}>{x.username}: {x.msg}</p>
+
+                <p className="listitem__time">{x.timestamp ? moment(x.timestamp).locale("se", localization).format("LT") : null}</p>
+                <p className="listitem__msg" id={x._id}><b>{x.username}</b>: {x.msg}</p>
               </div>
             )
           }) : <p>Loading...</p>}
-          <form onSubmit={onSubmit} action="">
-            <input value={value} onChange={onChange} type="text" name="chat" id="chat" />
-            <button type="submit">Send</button>
-          </form>
         </div>
+        <form className="form" onSubmit={onSubmit} action="">
+          <input autoComplete="off" placeholder={`Write something to @${chatRoom}`} className="form__input" value={value} onChange={onChange} type="text" name="chat" id="chat" />
+        </form>
 
       </div>
       <Sidebar socket={socket} changeRoom={roomSwitch} />
 
-    </section>
+    </section >
 
   )
 }

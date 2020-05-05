@@ -12,11 +12,9 @@ const {
 } = require("./db");
 
 //clientsent msgs.
-let messages = JSON.parse(fs.readFileSync("db.json")) || [];
 
 //Chatinfo
 let users = {};
-let rooms = JSON.parse(fs.readFileSync("rooms.json")) || [];
 
 //Middlewares
 app.use(express.json());
@@ -105,7 +103,7 @@ io.on('connection', (socket) => {
     socket.broadcast.to(newRoom).emit("message", joinMsg)
 
     socket.room = newRoom;
-    cb(Object.keys(socket.rooms));
+    cb(socket.room);
   })
 
   socket.on("room_add", (roomName, cb) => {
