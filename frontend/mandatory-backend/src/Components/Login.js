@@ -9,15 +9,14 @@ export default function Login({ socket }) {
 
   useEffect(() => {
     const subscription = token$.subscribe(updateTok);
-    socket.on("message", (data) => {
+    socket.on("token", (data) => {
       console.log(data);
       updateToken(data.id);
-      updateTok(data.id)
       localStorage.setItem("token", token$.value);
     })
 
     return () => {
-      socket.off("message");
+      socket.off("token");
       subscription.unsubscribe();
     }
   }, [])

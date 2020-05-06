@@ -60,7 +60,7 @@ io.on('connection', (socket) => {
 
     let msg = fn.setId(username);
 
-    socket.emit("message", msg)
+    socket.emit("token", msg)
 
     users[username] = {
       user: username,

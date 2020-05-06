@@ -7,6 +7,7 @@ import Chat from "./Components/Chat";
 import Login from "./Components/Login";
 
 function App() {
+
   let socket = io("localhost:8080");
   return (
     <Router>

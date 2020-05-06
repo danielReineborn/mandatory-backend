@@ -6,11 +6,11 @@ export default function Header({ socket }) {
   return (
     <header className="header">
       <div className="header__cont">
-        <p className="header__title">Logged in as: {socket.username}</p>
+        <p className="header__title">User: {socket.username}</p>
 
       </div>
       <div className="header__cont">
-        <button onClick={() => updateToken(null)} className="header__btn">Logout</button>
+        <button className="header__btn" onClick={() => updateToken(null)}>Logout</button>
 
       </div>
     </header>

@@ -16,18 +16,29 @@ export default function Sidebar({ socket, changeRoom }) {
   }, [])
 
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     socket.on("roomUpdate", response => {
       if (response) {
-        axios.get("/rooms")
+        axios.get("/rooms", {
+          cancelToken: source.token,
+        })
           .then(response => {
             let update = response.data;
             console.log(update);
             updateRooms(update);
-
+          })
+          .catch(e => {
+            if (axios.isCancel(e)) {
+              console.log("Request canceled: " + e.message)
+            } else {
+              console.error(e);
+            }
           })
       }
     })
     return () => {
+
       socket.off("roomsUpdate");
     }
   }, [])
@@ -92,9 +103,8 @@ export default function Sidebar({ socket, changeRoom }) {
       </div>
       <div className="sidebar__container">
         <form onSubmit={onSubmit} action="">
-          <label htmlFor="add">Create new room</label>
-          <input onChange={onChange} value={value} type="text" name="add" id="add" />
-          <button type="submit">Add</button>
+          <input placeholder="Add room" className="form__input input--room" onChange={onChange} value={value} type="text" name="add" id="add" />
+          <button className="form__btn" type="submit">Add</button>
         </form>
       </div>
     </aside >

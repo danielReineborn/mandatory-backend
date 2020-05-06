@@ -1,4 +1,5 @@
 import React from "react";
+import { truncate } from "../Utils"
 
 export default function ListItem({ room, changeRoom, deleteRoom }) {
 
@@ -16,8 +17,8 @@ export default function ListItem({ room, changeRoom, deleteRoom }) {
   }
   return (
     <div onClick={contClick} className="sidebar__item">
-      <p>{room.name}</p>
-      <button onClick={btnClick}>X</button>
+      <p className="sidebar__p">{truncate(room.name)}</p>
+      {room.name === "general" ? null : <button className="sidebar__btn" onClick={btnClick}>X</button>}
     </div>
   )
 }

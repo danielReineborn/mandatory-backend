@@ -15,6 +15,8 @@ export default function Chat({ socket }) {
   const [token, updateToken] = useState(token$.value);
 
 
+  const myRef = useRef();
+  const scroll = useRef();
   useEffect(() => {
     const subscription = token$.subscribe(updateToken);
     socket.username = localStorage.getItem("user");
@@ -29,6 +31,7 @@ export default function Chat({ socket }) {
         let data = res.data;
         updateMsg(data);
         console.log(data);
+
         return res;
       })
       .catch(e => {
@@ -39,19 +42,16 @@ export default function Chat({ socket }) {
 
   useEffect(() => {
     socket.on("message", data => {
-      console.log(data);
-      //copy msg and use copy not real state.
       let msgCopy = [...msg];
       msgCopy.push(data);
       updateMsg(msgCopy);
-
+      myRef.current.scrollTo(0, myRef.current.scrollHeight)
     })
     return () => {
       socket.off("message");
     }
   }, [msg, chatRoom])
 
-  const myRef = useRef()
 
   function onChange(e) {
     let value = e.target.value;
@@ -68,6 +68,8 @@ export default function Chat({ socket }) {
 
   function onSubmit(e) {
     e.preventDefault();
+
+    if (!value) return;
 
     let newMessage = {
       username: socket.username,
@@ -108,6 +110,7 @@ export default function Chat({ socket }) {
 
                 <p className="listitem__time">{x.timestamp ? moment(x.timestamp).locale("se", localization).format("LT") : null}</p>
                 <p className="listitem__msg" id={x._id}><b>{x.username}</b>: {x.msg}</p>
+                <div ref={myRef}></div>
               </div>
             )
           }) : <p>Loading...</p>}
