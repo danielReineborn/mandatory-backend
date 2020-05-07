@@ -5,8 +5,9 @@ export function capLetter(string) {
 }
 
 export function truncate(string) {
-  if (string.length > 15) {
-    return string.slice(0, 14) + "...";
+  let n = 15
+  if (string.length > n) {
+    return string.slice(0, n) + "...";
   } else {
     return string;
   }

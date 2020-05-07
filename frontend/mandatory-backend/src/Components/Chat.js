@@ -14,10 +14,9 @@ export default function Chat({ socket }) {
   const [chatRoom, updateChatRoom] = useState("general");
   const [token, updateToken] = useState(token$.value);
 
-
-  const myRef = useRef();
-  const scroll = useRef();
+  const scroll = useRef(null);
   useEffect(() => {
+
     const subscription = token$.subscribe(updateToken);
     socket.username = localStorage.getItem("user");
     return () => {
@@ -32,6 +31,7 @@ export default function Chat({ socket }) {
         updateMsg(data);
         console.log(data);
 
+
         return res;
       })
       .catch(e => {
@@ -45,12 +45,19 @@ export default function Chat({ socket }) {
       let msgCopy = [...msg];
       msgCopy.push(data);
       updateMsg(msgCopy);
-      myRef.current.scrollTo(0, myRef.current.scrollHeight)
+
     })
     return () => {
       socket.off("message");
     }
   }, [msg, chatRoom])
+
+  function scrollTo() {
+    scroll.current.scrollTo(0, scroll.current.scrollHeight);
+
+  }
+  useEffect(scrollTo, [msg])
+
 
 
   function onChange(e) {
@@ -103,14 +110,13 @@ export default function Chat({ socket }) {
         <h1 className="chat__title">{capLetter(chatRoom)}</h1>
       </div>
       <div className="chatview__chat">
-        <div className="chatview__messages">
+        <div ref={scroll} className="chatview__messages">
           {msg ? msg.map((x) => {
             return (
               <div key={x._id} className="chat__listitem">
 
                 <p className="listitem__time">{x.timestamp ? moment(x.timestamp).locale("se", localization).format("LT") : null}</p>
                 <p className="listitem__msg" id={x._id}><b>{x.username}</b>: {x.msg}</p>
-                <div ref={myRef}></div>
               </div>
             )
           }) : <p>Loading...</p>}

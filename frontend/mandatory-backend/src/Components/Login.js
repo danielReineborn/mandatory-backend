@@ -41,13 +41,17 @@ export default function Login({ socket }) {
   return (
     <section className="loginScreen">
       <div className="login__cont">
-        <h1 className="form__title">Login</h1>
+        <h1 className="login__title">Login</h1>
+        <div className="form__cont">
 
-        <form onSubmit={onSubmit} action="">
-          <label htmlFor="username">Choose a username:</label>
-          <input value={userName} onChange={onChange} type="text" name="username" id="username" />
-        </form>
+          <form autoComplete="off" className="login__form" onSubmit={onSubmit} action="">
+            <input placeholder="Choose a username" className="login__input" value={userName} onChange={onChange} type="text" name="username" id="username" />
+          </form>
+        </div>
+        <footer>
+          <p className="login__foot">Powered by socket.IO</p>
 
+        </footer>
       </div>
     </section>
   )
