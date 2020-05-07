@@ -13,7 +13,6 @@ export default function Chat({ socket }) {
   const [chatRoom, updateChatRoom] = useState("general");
   const [token, updateToken] = useState(token$.value);
 
-  const scroll = useRef(null);
   useEffect(() => {
 
     const subscription = token$.subscribe(updateToken);
@@ -27,10 +26,7 @@ export default function Chat({ socket }) {
     axios.get(`/messages/${chatRoom}`)
       .then((res) => {
         let data = res.data;
-        updateMsg(data);
-        console.log(data);
-
-
+        if (token$.value) updateMsg(data);
         return res;
       })
       .catch(e => {
@@ -50,14 +46,15 @@ export default function Chat({ socket }) {
       socket.off("message");
     }
   }, [msg, chatRoom])
+  const scroll = useRef(null);
+
+  if (token) {
+  }
 
   function scrollTo() {
-    scroll.current.scrollTo(0, scroll.current.scrollHeight);
-
+    if (token) scroll.current.scrollTo(0, scroll.current.scrollHeight);
   }
   useEffect(scrollTo, [msg])
-
-
 
   function onChange(e) {
     let value = e.target.value;
@@ -65,9 +62,7 @@ export default function Chat({ socket }) {
   }
 
   function roomSwitch(room) {
-    console.log(chatRoom)
     socket.emit("room_switch", room, (data) => {
-      console.log(data);
     });
     updateChatRoom(room);
   }
@@ -85,7 +80,6 @@ export default function Chat({ socket }) {
     };
     socket.emit("new_message", newMessage, (id) => {
       newMessage._id = id;
-      console.log(newMessage);
       let messages = [
         ...msg,
         newMessage,
@@ -99,7 +93,6 @@ export default function Chat({ socket }) {
   }
 
   if (!token) {
-    console.log("this happens")
     return <Redirect to="/login" />
   }
   return (

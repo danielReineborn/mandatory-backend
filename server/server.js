@@ -53,7 +53,6 @@ app.get("/rooms", (req, res) => {
 io.on('connection', (socket) => {
   socket.on("adduser", (username) => {
     socket.username = username;
-    console.log(socket.username);
 
     socket.room = "general";
     socket.join(socket.room);
@@ -123,7 +122,6 @@ io.on('connection', (socket) => {
             .then(resp => {
               db.createCollection(roomName.name, (err, res) => {
                 if (err) throw err;
-                console.log("Collection created");
                 socket.broadcast.emit("roomUpdate", resp.result);
               })
               cb(true);
@@ -149,7 +147,6 @@ io.on('connection', (socket) => {
       })
       .then(result => {
         let collection = result.name;
-        console.log(collection);
 
         db.collection("rooms").deleteOne({
             _id: createObjectId(roomId)
@@ -173,32 +170,10 @@ io.on('connection', (socket) => {
         console.error(e);
 
       });
-    //rooms = rooms.filter(x => x !== roomName);
-
-    //fn.save(rooms, "rooms.json");
-    //fn.save(messages, "db.json");
-
   })
-  //socket error?
-
-
-
-  //Fixa socket.on("error"...)...
 
 });
 
 http.listen(port, () => {
   console.log("Server started, listening on: " + port);
 });
-
-
-/* 
-Events: 
-new_message - when a client sends a message.
-message - when server broadcasts msg.
-room_join - to join named room.
-room_join_msg - to send a message when user has joined a room.
-room_leave - to leave named room.
-room_leave_msg - to send a message to participants that a user has left.
-
-*/

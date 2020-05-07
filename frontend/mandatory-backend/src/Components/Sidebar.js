@@ -10,7 +10,6 @@ export default function Sidebar({ socket, changeRoom }) {
   useEffect(() => {
     axios.get("/rooms")
       .then((res) => {
-        console.log(res);
         updateRooms(res.data);
       })
   }, [])
@@ -25,7 +24,6 @@ export default function Sidebar({ socket, changeRoom }) {
         })
           .then(response => {
             let update = response.data;
-            console.log(update);
             updateRooms(update);
           })
           .catch(e => {
@@ -64,12 +62,6 @@ export default function Sidebar({ socket, changeRoom }) {
 
       }
     })
-    /* axios.post(`/rooms`, room)
-      .then((response) => {
-        console.log(response);
-      }) */
-
-
 
     updateValue("");
   }
