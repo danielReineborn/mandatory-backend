@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from "react-router-dom";
 import moment from "moment";
 import localization from 'moment/locale/de'
